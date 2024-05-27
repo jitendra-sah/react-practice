@@ -18,6 +18,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Select, {SelectChangeEvent} from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import User from "./../modules/user/User"
 import {Link} from "react-router-dom";
 
 const Item = styled(Paper)(({theme}) => ({
@@ -65,6 +66,8 @@ function List() {
                     <Divider></Divider>
                 </Grid>
             </Grid>
+            
+            <User />
         </div>
     );
 }
