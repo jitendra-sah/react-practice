@@ -1,25 +1,19 @@
 import "./../App.css";
 import * as React from "react";
-import CssBaseline from "@mui/material/CssBaseline";
 import Button from "@mui/material/Button";
 import {FormControl, FormLabel} from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import {styled} from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Divider from "@mui/material/Divider";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import Select, {SelectChangeEvent} from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import {Link} from "react-router-dom";
+import { addUser, removeUser } from './../app/user/userSlice'
 import List from "./List";
+import {useSelector, useDispatch} from "react-redux";
 
 function Home() {
     const [user, setUser] = React.useState({
@@ -31,10 +25,13 @@ function Home() {
         qualification: "M",
     });
 
+    const dispatch = useDispatch()
+
     const handleUserState = (event) => {
         const target = event.target;
         const value = target.type === "checkbox" ? target.checked : target.value;
         const name = target.name;
+       
         setUser({
             [name]: value,
         });
@@ -48,6 +45,8 @@ function Home() {
 
     const handleSubmit = () => {
         console.log("user structure", user);
+        dispatch(addUser(user));
+        dispatch(removeUser(user));
     };
 
     const myStyle = {
@@ -133,12 +132,16 @@ function Home() {
 
                 <Grid item xs={6} md={6}>
                     <FormControl fullWidth size="small">
-                        <InputLabel htmlFor="outlined-adornment-qualification">Qualification</InputLabel>
+                        <InputLabel htmlFor="qualification">Qualification</InputLabel>
                         <OutlinedInput
-                            id="outlined-adornment-qualification"
+                            id="qualification"
+                            name="qualification"
                             label="qualification"
                             spacing={2}
                             size="small"
+                            value={user.qualification}
+                            onChange={handleUserState}
+                           
                         />
                     </FormControl>
                 </Grid>
