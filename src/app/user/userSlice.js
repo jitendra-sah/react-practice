@@ -17,7 +17,7 @@ export const userSlice = createSlice({
   },
   reducers: {
     addUser: (state, action) => {
-        console.log('user add function trigger', state.userList.push(action.payload))
+        console.log('user add function trigger', state.userList.push(action.payload) )
         //console.log('user add function payload', action)
         // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
