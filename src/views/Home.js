@@ -31,10 +31,8 @@ function Home() {
         const target = event.target;
         const value = target.type === "checkbox" ? target.checked : target.value;
         const name = target.name;
-       
-        setUser({
-            [name]: value,
-        });
+        user[name] = value
+        setUser(user);
     };
 
     const [age, setAge] = React.useState("");
